@@ -3,7 +3,6 @@
 import os
 import sys
 
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pg_management_system.settings')
@@ -15,8 +14,13 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    # 🟢 Auto-detect $PORT for Render deployment
+    port = os.environ.get("PORT", "8000")
+    if len(sys.argv) == 1 or (sys.argv[1] == "runserver" and len(sys.argv) == 2):
+        sys.argv += [f"0.0.0.0:{port}"]
+
     execute_from_command_line(sys.argv)
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
