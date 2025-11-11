@@ -44,8 +44,6 @@ class Rooms(models.Model):
     #         return f"Billing for {self.user.username} - Amount: {self.amount}"
 
 
-from django.db import models
-
 class Tenants(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
