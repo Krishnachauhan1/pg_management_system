@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6iny@x&z=$j=rw90&vx8bfttze^_af@5lcyw1_b&zfa+n_(i@5'
 DEBUG = True
 
-ALLOWED_HOSTS = ['pg-management-system-wpjk.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['pg-management-system-wpjk.onrender.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -77,3 +77,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True  # for testing only
+APPEND_SLASH = True
