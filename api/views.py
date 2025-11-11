@@ -43,3 +43,18 @@ class UsersViewSet(viewsets.ModelViewSet):
 class RoomsViewSet(viewsets.ModelViewSet):
     queryset = Rooms.objects.all()
     serializer_class = RoomSerializer   
+
+# class BillingViewSet(viewsets.ModelViewSet):
+#     queryset = Billing.objects.all()
+#     serializer_class = BillingSerializer          
+
+class TenantsViewSet(viewsets.ModelViewSet):
+    queryset = Tenants.objects.all()
+    serializer_class = TenantSerializer
+
+    @action(detail=False, methods=['get'], url_path='active-tenants')
+    def active_tenants(self, request):
+        active_tenants = self.queryset.filter(is_active=True)
+        serializer = self.get_serializer(active_tenants, many=True)
+        return Response(serializer.data)   
+    

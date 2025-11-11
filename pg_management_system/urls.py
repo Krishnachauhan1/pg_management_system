@@ -8,6 +8,8 @@ router = DefaultRouter()
 router.register(r'pgs', PgsViewSet, basename='pgs')
 router.register(r'rooms', RoomsViewSet, basename='rooms')
 router.register(r'users', UsersViewSet, basename='users')
+router.register(r'tenants', TenantsViewSet, basename='tenants')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

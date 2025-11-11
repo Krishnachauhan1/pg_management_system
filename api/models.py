@@ -42,3 +42,22 @@ class Rooms(models.Model):
 
     #     def __str__(self):
     #         return f"Billing for {self.user.username} - Amount: {self.amount}"
+
+
+from django.db import models
+
+class Tenants(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    contact_number = models.CharField(max_length=15)
+    pg = models.ForeignKey('Pgs', on_delete=models.CASCADE, related_name='tenants')
+    room = models.ForeignKey('Rooms', on_delete=models.SET_NULL, null=True, blank=True, related_name='tenants')
+    move_in_date = models.DateField()
+    move_out_date = models.DateField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)  # indicates if tenant is currently staying
+    rent = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)  # monthly rent
+
+    def __str__(self):
+        return f"{self.name} - Room {self.room.room_number if self.room else 'N/A'}"
+
